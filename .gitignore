@@ -1,0 +1,30 @@
+# Python virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# PyInstaller build artifacts (keep dist/ if user wants release binaries)
+build/
+*.spec
+
+# Log files
+*.log
+overlay_debug.log
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo

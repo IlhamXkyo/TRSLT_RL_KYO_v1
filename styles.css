@@ -1,0 +1,646 @@
+/* ==========================================================================
+   GAME VOICE TRANSLATOR OVERLAY - 3 THEME SYSTEM & COMPONENT STYLES
+   ========================================================================== */
+
+:root {
+  --font-cute: 'Nunito', 'Quicksand', sans-serif;
+  --font-sangar: 'Rajdhani', 'Teko', sans-serif;
+  --font-modern: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  --bg-opacity: 0.85;
+  --base-font-size: 15px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: transparent;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Container pembungkus yang 100% transparan tanpa background gradient */
+.overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   THEME 1: 🧸 CARTOONISH / CUTE THEME
+   -------------------------------------------------------------------------- */
+body.theme-cute {
+  --font-family: var(--font-cute);
+  --widget-bg: rgba(254, 252, 232, var(--bg-opacity)); /* Cream/Pastel Yellow */
+  --widget-border: 3px solid #78350f; /* Warm chocolate brown border */
+  --widget-radius: 24px;
+  --widget-shadow: 0 10px 25px -5px rgba(120, 53, 15, 0.35), 0 8px 10px -6px rgba(120, 53, 15, 0.2);
+  
+  --text-color: #451a03;
+  --text-secondary: #92400e;
+  --translated-color: #1e1b4b; /* Cute dark indigo */
+  
+  --card-bg: #fef08a; /* Soft pastel yellow card */
+  --card-border: 2px solid #ca8a04;
+  --card-radius: 18px;
+  --card-shadow: 3px 3px 0px #78350f;
+  
+  --accent-color: #f43f5e; /* Rose pink */
+  --header-bg: #fed7aa;
+  --badge-bg: #fb7185;
+  --badge-text: #fff;
+  
+  --btn-hover-bg: #fed7aa;
+  --hud-line: none;
+}
+
+/* --------------------------------------------------------------------------
+   THEME 2: 🔥 SANGAR / BERAPI-API (GAMING HUD)
+   -------------------------------------------------------------------------- */
+body.theme-sangar {
+  --font-family: var(--font-sangar);
+  --widget-bg: rgba(10, 10, 14, var(--bg-opacity)); /* Dark Charcoal */
+  --widget-border: 1px solid rgba(239, 68, 68, 0.5); /* Glowing Red Border */
+  --widget-radius: 4px;
+  --widget-shadow: 0 0 20px rgba(220, 38, 38, 0.35), inset 0 0 15px rgba(239, 68, 68, 0.15);
+  
+  --text-color: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --translated-color: #ffedd5;
+  
+  --card-bg: linear-gradient(135deg, rgba(28, 25, 23, 0.95) 0%, rgba(69, 10, 10, 0.8) 100%);
+  --card-border: 1px solid rgba(249, 115, 22, 0.6);
+  --card-radius: 2px;
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  
+  --accent-color: #ff4500; /* Neon Orange Lava */
+  --header-bg: rgba(239, 68, 68, 0.15);
+  --badge-bg: #dc2626;
+  --badge-text: #ffffff;
+  
+  --btn-hover-bg: rgba(239, 68, 68, 0.25);
+  --hud-line: 2px solid #f97316;
+}
+
+/* Chamfered angular corners for HUD theme */
+body.theme-sangar .floating-widget {
+  clip-path: polygon(
+    0 12px, 12px 0,
+    calc(100% - 12px) 0, 100% 12px,
+    100% calc(100% - 12px), calc(100% - 12px) 100%,
+    12px 100%, 0 calc(100% - 12px)
+  );
+}
+
+body.theme-sangar .subtitle-card {
+  clip-path: polygon(
+    0 8px, 8px 0,
+    100% 0, 100% calc(100% - 8px),
+    calc(100% - 8px) 100%, 0 100%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   THEME 3: 💎 MODERN / MINIMALIST FROSTED GLASS
+   -------------------------------------------------------------------------- */
+body.theme-modern {
+  --font-family: var(--font-modern);
+  --widget-bg: rgba(15, 23, 42, var(--bg-opacity)); /* Slate Glass */
+  --widget-border: 1px solid rgba(255, 255, 255, 0.12);
+  --widget-radius: 14px;
+  --widget-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  
+  --text-color: #f8fafc;
+  --text-secondary: #94a3b8;
+  --translated-color: #38bdf8; /* Cyan Sky */
+  
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: 1px solid rgba(255, 255, 255, 0.08);
+  --card-radius: 10px;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  
+  --accent-color: #38bdf8;
+  --header-bg: rgba(255, 255, 255, 0.03);
+  --badge-bg: rgba(56, 189, 248, 0.2);
+  --badge-text: #7dd3fc;
+  
+  --btn-hover-bg: rgba(255, 255, 255, 0.1);
+  --hud-line: none;
+}
+
+body.theme-modern .floating-widget {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* --------------------------------------------------------------------------
+   FLOATING WIDGET CONTAINER & INTERACTIONS
+   -------------------------------------------------------------------------- */
+.floating-widget {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+  margin: 0;
+  
+  background: var(--widget-bg);
+  border: var(--widget-border);
+  border-radius: var(--widget-radius);
+  box-shadow: var(--widget-shadow);
+  
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 1000;
+  transition: box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.floating-widget.locked {
+  border-style: dashed;
+}
+
+.floating-widget.click-through {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.floating-widget.click-through * {
+  pointer-events: none;
+}
+
+/* Header & Drag Area */
+.widget-header {
+  height: 38px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--header-bg);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+  cursor: grab;
+}
+
+.widget-header:active {
+  cursor: grabbing;
+}
+
+.drag-grip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e; /* Green Pulse */
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulse-dot 1.8s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.widget-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.icon-btn:hover {
+  background: var(--btn-hover-bg);
+  transform: translateY(-1px);
+}
+
+.icon-btn.active-btn {
+  background: var(--accent-color);
+  color: #ffffff;
+}
+
+/* Subtitles Feed */
+.subtitles-feed {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 320px;
+}
+
+/* Subtitle Card with Dynamic Animation */
+.subtitle-card {
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 10px 14px;
+  position: relative;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Cute Spring Animation */
+body.theme-cute .subtitle-card.active-card {
+  animation: cuteBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cuteBounce {
+  0% { transform: scale(0.85) translateY(10px); opacity: 0; }
+  60% { transform: scale(1.04) translateY(-2px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Sangar Neon Slide In */
+body.theme-sangar .subtitle-card.active-card {
+  animation: sangarGlow 0.3s ease-out;
+}
+
+@keyframes sangarGlow {
+  0% { transform: translateX(-15px); opacity: 0; filter: brightness(1.8); }
+  100% { transform: translateX(0); opacity: 1; filter: brightness(1); }
+}
+
+/* Modern Fade In */
+body.theme-modern .subtitle-card.active-card {
+  animation: modernFade 0.35s ease-out;
+}
+
+@keyframes modernFade {
+  0% { transform: translateY(8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.subtitle-card.history-card {
+  opacity: 0.65;
+  transform: scale(0.98);
+}
+
+.subtitle-card.history-card:hover {
+  opacity: 0.95;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 11px;
+}
+
+.speaker-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.time-tag {
+  color: var(--text-secondary);
+  font-size: 10px;
+}
+
+.original-text {
+  font-size: calc(var(--base-font-size) - 2px);
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.translated-text {
+  font-size: var(--base-font-size);
+  color: var(--translated-color);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.hud-accent-line {
+  margin-top: 6px;
+  height: 2px;
+  background: var(--hud-line);
+}
+
+/* VAD Activity Waveform Bar */
+.vad-activity-bar {
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.vad-label {
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.waveform-bars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 14px;
+}
+
+.wave-bar {
+  width: 3px;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
+
+.waveform-active .wave-bar:nth-child(1) { animation: wave 0.4s infinite alternate; }
+.waveform-active .wave-bar:nth-child(2) { animation: wave 0.6s infinite 0.1s alternate; }
+.waveform-active .wave-bar:nth-child(3) { animation: wave 0.5s infinite 0.2s alternate; }
+.waveform-active .wave-bar:nth-child(4) { animation: wave 0.7s infinite 0.15s alternate; }
+.waveform-active .wave-bar:nth-child(5) { animation: wave 0.45s infinite 0.05s alternate; }
+.waveform-active .wave-bar:nth-child(6) { animation: wave 0.65s infinite 0.25s alternate; }
+
+@keyframes wave {
+  0% { height: 3px; }
+  100% { height: 13px; }
+}
+
+.vad-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(128, 128, 128, 0.2);
+  color: var(--text-secondary);
+}
+
+.vad-badge.speaking {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+/* Resize Grip */
+.resize-grip {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 14px;
+  height: 14px;
+  cursor: se-resize;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.resize-grip:hover {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   COLLAPSIBLE SETTINGS DRAWER
+   -------------------------------------------------------------------------- */
+.settings-drawer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.96);
+  color: #f8fafc;
+  border: var(--widget-border);
+  border-radius: var(--widget-radius);
+  font-family: var(--font-modern);
+  z-index: 2000;
+  animation: slideInDrawer 0.2s ease-out;
+  backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.settings-drawer .drawer-body {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.settings-drawer.hidden {
+  display: none;
+}
+
+.drawer-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-header h3 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.icon-btn-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.icon-btn-close:hover {
+  color: #ffffff;
+}
+
+.drawer-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.setting-title {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Theme Picker Buttons */
+.theme-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.theme-card-btn {
+  background: rgba(30, 41, 59, 0.6);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 8px 4px;
+  cursor: pointer;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.theme-card-btn:hover {
+  background: rgba(51, 65, 85, 0.8);
+  transform: translateY(-2px);
+}
+
+.theme-card-btn.active {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.theme-preview {
+  font-size: 22px;
+}
+
+.theme-name {
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.theme-desc {
+  font-size: 9px;
+  color: #94a3b8;
+  text-align: center;
+}
+
+/* Language Dropdowns */
+.lang-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.field-item {
+  flex: 1;
+}
+
+.field-label {
+  display: block;
+  font-size: 10px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.dropdown-select {
+  width: 100%;
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-family: inherit;
+  outline: none;
+}
+
+.lang-arrow {
+  color: #38bdf8;
+  font-size: 14px;
+  margin-top: 14px;
+}
+
+/* Custom Sliders */
+.custom-slider {
+  width: 100%;
+  accent-color: #38bdf8;
+  cursor: pointer;
+}
+
+/* Hotkey tips */
+.hotkey-tips {
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.badge-key {
+  background: #334155;
+  color: #38bdf8;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 10px;
+}
+
+.tip-text {
+  color: #94a3b8;
+}
+
+.hidden {
+  display: none !important;
+}
