@@ -10,8 +10,9 @@ __pycache__/
 *$py.class
 *.pyo
 
-# PyInstaller build artifacts (keep dist/ if user wants release binaries)
+# PyInstaller build artifacts
 build/
+dist/
 *.spec
 
 # Log files
